@@ -1,7 +1,7 @@
 {
-  "name": "knightbot",
-  "version": "1.0.0",
-  "description": "WhatsApp Bot",
+  "name": "𝗔𝗡𝗗𝗔𝗟𝗔 𝗔𝗜",
+  "version": "2.1.3",
+  "description": "𝗔𝗡𝗗𝗔𝗟𝗔 𝗔𝗜",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
