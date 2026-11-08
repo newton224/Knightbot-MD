@@ -1268,31 +1268,8 @@ async function handleGroupParticipantUpdate(sock, update) {
             return;
         }
 
-        // Automatically leave the specified group if this bot account is added.
-        // Check that the bot itself is among the newly added participants so this
-        // does not trigger when ordinary members join.
+        // Handle join events
         if (action === 'add') {
-            const botJid = sock.user?.id
-                ? sock.user.id.split(':')[0].split('@')[0] + '@s.whatsapp.net'
-                : null;
-            const addedJids = (participants || []).map(jid =>
-                String(jid).split(':')[0].split('@')[0] + '@s.whatsapp.net'
-            );
-
-            if (botJid && addedJids.includes(botJid)) {
-                const metadata = await sock.groupMetadata(id);
-                const targetGroupName = 'STARSHIP TECH 🤩';
-
-                if (
-                    String(metadata.subject || '').trim().toLowerCase() ===
-                    targetGroupName.trim().toLowerCase()
-                ) {
-                    console.log(`🚪 Auto-leaving blocked group: ${metadata.subject}`);
-                    await sock.groupLeave(id);
-                    return;
-                }
-            }
-
             await handleJoinEvent(sock, id, participants);
         }
 
